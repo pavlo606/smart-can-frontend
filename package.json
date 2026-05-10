@@ -7,11 +7,25 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "i18n:types": "ts-node scripts/generate-i18n-types.ts"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "axios": "^1.13.5",
+    "i18next": "^25.8.13",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "i18next-http-backend": "^3.0.2",
+    "lucide-react": "^0.575.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-i18next": "^16.5.4",
+    "react-router": "^7.13.0",
+    "react-toastify": "^11.0.5",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.18",
+    "ts-node": "^10.9.2",
+    "vite-tsconfig-paths": "^6.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
