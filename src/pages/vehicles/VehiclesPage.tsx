@@ -14,19 +14,19 @@ import { useQueryPagination } from "@/hooks/useQueryPagination";
 import { cn } from "@/utils/cn";
 import { Eye, PencilLine, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router";
+// import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 import { toast } from "react-toastify";
 
 const VehiclesPage = () => {
-  const navigate = useNavigate();
-  const { t } = useTranslation(["common"]);
+  // const navigate = useNavigate();
+  // const { t } = useTranslation(["common"]);
   const [modalOpen, setModalOpen] = useState(false);
 
   const { search, page, limit, sortBy, sortOrder, setQuery } =
     useQueryPagination();
 
-  const [searchState, setSearchState] = useState(search);
+  const [searchState, _] = useState(search);
   const debouncedSearch = useDebounce(searchState);
 
   const { data, isLoading, isError, error } = useManyVehicles({
