@@ -1,0 +1,11 @@
+{
+  "subName": "Online vehicle condition monitoring system",
+  "pages":{
+      "dashboard": "Dashboard",
+      "cars": "My Cars",
+      "profile": "Profile",
+      "devices": "Devices"
+  },
+  "login": "Login",
+  "logout": "Logout"
+}

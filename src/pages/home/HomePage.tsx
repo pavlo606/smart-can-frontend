@@ -1,7 +1,11 @@
+import { MapComponent } from "@/components/ui/Map"
+
 const HomePage = () => {
   return (
     <div>
-      Fucking Home page
+      <MapComponent>
+        
+      </MapComponent>
     </div>
   )
 }

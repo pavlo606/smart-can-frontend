@@ -2,5 +2,9 @@
   "fuck": "Fucking",
   "fucking": {
     "dick": "bitch"
+  },
+  "actions": {
+    "login": "Login",
+    "logout": "Logout"
   }
 }
