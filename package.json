@@ -8,8 +8,7 @@
     "build": "ts-node scripts/generate-i18n-types.ts && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "i18n:types": "ts-node scripts/generate-i18n-types.ts",
-    "start": "caddy run"
+    "i18n:types": "ts-node scripts/generate-i18n-types.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
