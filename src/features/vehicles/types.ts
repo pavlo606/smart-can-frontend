@@ -8,6 +8,7 @@ export interface Vehicle {
   model: string
   year?: string
   vin?: string
+  initialOdometer: number
   user?: User
   device?: Device
 }
@@ -25,4 +26,9 @@ export interface VehiclesQuery {
 export interface VehiclesResponse {
   items: Vehicle[]
   meta: { total: number; page: number; limit: number; totalPages: number }
+}
+
+export interface AuthDeviceDto {
+  deviceId: string;
+  secret: string;
 }

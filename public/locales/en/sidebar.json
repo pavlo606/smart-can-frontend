@@ -2,9 +2,8 @@
   "subName": "Online vehicle condition monitoring system",
   "pages":{
       "dashboard": "Dashboard",
-      "cars": "My Cars",
-      "profile": "Profile",
-      "devices": "Devices"
+      "cars": "My vehicles",
+      "profile": "Profile"
   },
   "login": "Login",
   "logout": "Logout"

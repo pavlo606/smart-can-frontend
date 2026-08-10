@@ -30,16 +30,18 @@ export const router = createBrowserRouter([
           { index: true, Component: Home },
           {
             path: "cars",
-            Component: VehiclesPage,
-          },
-          {
-            path: "device",
-            children: [{ path: ":id", Component: DevicePage }],
-          },
-          {
-            path: "track",
-            children: [{ path: ":id", Component: TrackPage }],
-          },
+            children: [
+              { index: true, Component: VehiclesPage },
+              {
+                path: "device",
+                children: [{ path: ":id", Component: DevicePage }],
+              },
+              {
+                path: "track",
+                children: [{ path: ":id", Component: TrackPage }],
+              },
+            ]
+          }
         ],
       },
       { path: "*", element: <NotFoundPage /> },

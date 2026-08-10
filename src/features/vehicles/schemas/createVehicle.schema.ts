@@ -2,12 +2,11 @@ import { z } from "zod";
 
 export const createVehicleSchema = z.object({
   name: z.string().min(1, "Name cannot be empty"),
-  email: z.string().optional(),
-  phone: z.string().optional(),
-  address: z.string().optional(),
-  notes: z.string().optional(),
-  paymentDetails: z.string().optional(),
-  future: z.boolean().optional(),
+  brand: z.string().min(1, "Brand cannot be empty"),
+  model: z.string().min(1, "Model cannot be empty"),
+  initialOdometer: z.number().min(0, "Initial odometer cannot be negative"),
+  year: z.string().optional(),
+  vin: z.string().optional(),
 });
 
 export type CreateVehicleSchemaDto = z.infer<typeof createVehicleSchema>;

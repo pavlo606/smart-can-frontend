@@ -8,11 +8,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
+import { ConnectTrackerForm } from "@/features/vehicles/forms/ConnectTrackerForm";
+import { CreateVehicleForm } from "@/features/vehicles/forms/CreateVehicleForm";
 import { useManyVehicles } from "@/features/vehicles/hook";
+import type { Vehicle } from "@/features/vehicles/types";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useQueryPagination } from "@/hooks/useQueryPagination";
 import { cn } from "@/utils/cn";
-import { Eye, PencilLine, Plus } from "lucide-react";
+import { PencilLine, Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 // import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
@@ -21,7 +24,10 @@ import { toast } from "react-toastify";
 const VehiclesPage = () => {
   // const navigate = useNavigate();
   // const { t } = useTranslation(["common"]);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modalConnectTrackerOpen, setModalConnectTrackerOpen] = useState(false);
+  const [modalEditVehicleOpen, setModalEditVehicleOpen] = useState(false);
+
+  const [editingVehicle, setEditingVehicle] = useState<Vehicle | null>(null);
 
   const { search, page, limit, sortBy, sortOrder, setQuery } =
     useQueryPagination();
@@ -54,7 +60,15 @@ const VehiclesPage = () => {
           <h1 className="text-xl font-semibold text-gray-900">Cars</h1>
           <p className="text-sm text-gray-600">Manage your cars</p>
         </div>
-        <Button Icon={Plus}>Add car</Button>
+        <Button
+          Icon={Plus}
+          onClick={() => {
+            setEditingVehicle(null);
+            setModalEditVehicleOpen(true);
+          }}
+        >
+          Add car
+        </Button>
       </div>
 
       <div>
@@ -79,23 +93,28 @@ const VehiclesPage = () => {
                   <TableCell>{vehicle.brand}</TableCell>
                   <TableCell>{vehicle.model}</TableCell>
                   <TableCell>{vehicle.year || "-"}</TableCell>
-                  <TableCell className={cn(vehicle.device ? "text-emerald-500" : "text-red-500")}>{vehicle.device ? "Tracker connected" : "Tracker not connected"}</TableCell>
-                  <TableCell className="space-x-2">
-                    <Link to={`/clients/${vehicle.id}`}>
-                      <Button variant="ghost" size="sm" Icon={Eye}></Button>
-                    </Link>
+                  <TableCell
+                    className={cn(
+                      vehicle.device ? "text-emerald-500" : "text-red-500",
+                    )}
+                  >
+                    {vehicle.device
+                      ? "Tracker connected"
+                      : "Tracker not connected"}
+                  </TableCell>
+                  <TableCell className="space-x-2 text-right">
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => {
-                        // setEditingClient(client);
-                        // setModalOpen(true);
+                        setEditingVehicle(vehicle);
+                        setModalEditVehicleOpen(true);
                       }}
                       Icon={PencilLine}
                     ></Button>
                     {vehicle.device ? (
                       <>
-                        <Link to={`/device/${vehicle.device.id}`}>
+                        <Link to={`/cars/device/${vehicle.device.id}`}>
                           <Button variant="ghost" size="sm">
                             View tracks
                           </Button>
@@ -104,7 +123,14 @@ const VehiclesPage = () => {
                     ) : (
                       <>
                         {/* <Link to={`/clients/${vehicle.id}`}> */}
-                        <Button variant="ghost" size="sm" onClick={() => setModalOpen(true)}>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            setEditingVehicle(vehicle);
+                            setModalConnectTrackerOpen(true)
+                          }}
+                        >
                           Connect Tracker
                         </Button>
                         {/* </Link> */}
@@ -118,21 +144,28 @@ const VehiclesPage = () => {
         )}
       </div>
       <Modal
-        title="Connect Tracker"
-        open={modalOpen}
-        onClose={() => setModalOpen(false)}
+        open={modalEditVehicleOpen}
+        title={editingVehicle ? "Edit" : "Create"}
+        onClose={() => setModalEditVehicleOpen(false)}
       >
-        <form>
-          <label className="text-sm">Device Id</label>
-          <input className="w-full rounded-md border px-3 py-2 text-sm" />
-          
-          <label className="text-sm">Device Key</label>
-          <input className="w-full rounded-md border px-3 py-2 text-sm" />
+        <CreateVehicleForm
+          editingItem={editingVehicle || undefined}
+          onSuccess={() => setModalEditVehicleOpen(false)}
+        />
+      </Modal>
 
-          <div className="flex justify-end mt-4">
-            <Button className="">Connect</Button>
-          </div>
-        </form>
+      <Modal
+        title="Connect Tracker"
+        open={modalConnectTrackerOpen}
+        onClose={() => setModalConnectTrackerOpen(false)}
+      >
+        <ConnectTrackerForm
+          editingItem={editingVehicle || undefined}
+          onSuccess={() => {
+            toast.success("Tracker Connected!")
+            setModalConnectTrackerOpen(false)
+          }}
+        />
       </Modal>
     </div>
   );

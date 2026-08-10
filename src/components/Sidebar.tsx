@@ -27,7 +27,6 @@ const Sidebar = ({ onToggle, collapsed }: SidebarParams) => {
   const navItems = [
     { icon: <LayoutDashboard size={16} />, label: t('pages.dashboard'), to: '/' },
     { icon: <Car size={16} />, label: t('pages.cars'), to: '/cars' },
-    { icon: <Car size={16} />, label: t('pages.devices'), to: '/devices' },
     { icon: <UserCog size={16} />, label: t('pages.profile'), to: '/profile' },
   ]
 

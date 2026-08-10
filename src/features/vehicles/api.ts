@@ -1,5 +1,5 @@
 import api from '@/services/api'
-import { type Vehicle, type VehiclesQuery, type VehiclesResponse } from './types'
+import { type AuthDeviceDto, type Vehicle, type VehiclesQuery, type VehiclesResponse } from './types'
 import type { CreateVehicleSchemaDto } from './schemas/createVehicle.schema'
 
 export async function getVehicleById(id: string) {
@@ -29,10 +29,6 @@ export async function deleteVehicle(id: string) {
   await api.delete(`/vehicle/${id}`)
 }
 
-export async function deleteSoftVehicle(id: string) {
-  await api.delete(`/vehicle/soft/${id}`)
-}
-
-export async function restoreVehicle(id: string) {
-  await api.patch(`/vehicle/restore/${id}`)
+export async function connectTracker(id: string, payload: AuthDeviceDto) {
+  await api.patch(`/device/connect/vehicle/${id}`, payload)
 }
