@@ -8,7 +8,7 @@ interface FormErrorMsgParams {
   ns: any
 }
 
-export const FormErrorMsg = ({ message, ns }: FormErrorMsgParams) => {
+export const FormErrorMsg = ({ message }: FormErrorMsgParams) => {
   // const { t } = useTranslation<T>(ns)
 
   if (!message) {

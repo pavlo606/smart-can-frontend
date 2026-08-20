@@ -3,7 +3,7 @@ import { MapComponent } from "@/components/ui/Map";
 import { useManyTelemetry } from "@/features/telemetry/hook";
 import { useTrack } from "@/features/track/hook";
 import { useParams } from "react-router";
-import { Polyline, Tooltip, useMapEvents } from "react-leaflet";
+import { Polyline, Tooltip } from "react-leaflet";
 import { type LatLngExpression } from "leaflet";
 
 type MetricKey = "speed" | "rpm" | "coolantTemp" | "fuelLevel";
