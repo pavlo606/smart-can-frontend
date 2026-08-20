@@ -50,7 +50,7 @@ const DevicePage = () => {
               <TableCell>{track.startTimestamp}</TableCell>
               <TableCell>{track.endTimestamp}</TableCell>
               <TableCell className="space-x-2 text-right">
-                <Link to={`/track/${track.id}`}>
+                <Link to={`/cars/track/${track.id}`}>
                   <Button variant="ghost" size="sm" Icon={Eye}></Button>
                 </Link>
                 <Button

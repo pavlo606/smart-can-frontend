@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router";
 import {
+  AdminRequireLoader,
   authRequireLoader,
   getUserLoader,
   redirectIfAuth,
@@ -12,6 +13,7 @@ const RegisterPage = lazy(() => import("@/pages/auth/RegisterPage"));
 const VehiclesPage = lazy(() => import("@/pages/vehicles/VehiclesPage"));
 const DevicePage = lazy(() => import("@/pages/device/DevicePage"));
 const TrackPage = lazy(() => import("@/pages/track/TrackPage"));
+const DebugTrackPage = lazy(() => import("@/pages/track/TrackDebug"));
 
 // const UsersPage = lazy(() => import('@/pages/users/UsersPage'))
 const NotFoundPage = lazy(() => import("@/pages/NotFoundPage"));
@@ -38,10 +40,17 @@ export const router = createBrowserRouter([
               },
               {
                 path: "track",
-                children: [{ path: ":id", Component: TrackPage }],
+                children: [
+                  { path: ":id", Component: TrackPage },
+                  {
+                    path: "debug",
+                    Component: DebugTrackPage,
+                    loader: AdminRequireLoader,
+                  },
+                ],
               },
-            ]
-          }
+            ],
+          },
         ],
       },
       { path: "*", element: <NotFoundPage /> },

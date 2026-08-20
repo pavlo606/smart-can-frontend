@@ -42,7 +42,7 @@ export const AdminRequireLoader = async () => {
 
     const user = await AuthAPI.me()
 
-    if (user?.role !== "Admin") return redirect('/')
+    if (user?.role !== "ADMIN") return redirect('/')
 
     return { user }
   } catch {
