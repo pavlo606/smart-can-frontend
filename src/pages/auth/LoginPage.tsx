@@ -93,7 +93,7 @@ export default function Login() {
           to={`/auth/register?redirect=${params.get('redirect') || '/'}`}
           className="text-emerald-600"
         >
-          {t('register.actions.haveAccount')}
+          {t('login.actions.notRegistered')}
         </Link>
       </div>
 
