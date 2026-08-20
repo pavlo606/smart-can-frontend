@@ -1,73 +1,128 @@
-# React + TypeScript + Vite
+[![Vite](https://img.shields.io/badge/React-Vite-ae58d7)](https://vite.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-v5-3178c6)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-Styles-00bcff)](https://tailwindcss.com/)
+[![ReactRouter](https://img.shields.io/badge/ReactRouter-v7-red)](https://reactrouter.com/7.18.2/home)
+[![Leaflet](https://img.shields.io/badge/Leaflet-Map-7da034)](https://leafletjs.com/)
+[![ReactQuery](https://img.shields.io/badge/ReactQuery-v5-de6841)](https://tanstack.com/query/latest)
+[![Zod](https://img.shields.io/badge/Zod-Validation-blue)](https://zod.dev/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# OBD-II Vehicle Tracker Frontend
 
-Currently, two official plugins are available:
+React frontend for the SmartCAN OBD-II Vehicle Tracker.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- JWT authentication
+- Vehicle management
+- Vehicle telemetry
+- Trip history
+- Interactive map
+- Responsive UI
+- Internationalization
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## Tech Stack
+ - React
+ - TypeScript
+ - Vite
+ - Tailwind CSS
+ - React Query
+ - React Router
+ - Axios
+ - Leaflet
+ - React Hook Form
+ - Zod
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project Structure
+```text
+public/
+└── locales/
+    ├── en/
+    └── uk/
+scripts/
+└── generate-i18n-types.ts
+src/
+├── app/
+│   └── QueryProvider.tsx
+├── components/
+│   └── ui/
+├── context/
+├── features/
+│   ├── common/
+│   ├── auth/
+│   ├── device/
+│   ├── telemetry/
+│   ├── track/
+│   ├── users/
+│   └── vehicles/
+├── hooks/
+├── i18n/
+├── layouts/
+├── pages/
+│   ├── auth/
+│   ├── device/
+│   ├── home/
+│   ├── track/
+│   └── vehicles/
+├── routes/
+│   ├── loaders/
+│   └── AppRoute.tsx
+├── services/
+│   └── api.ts
+│
+├── App.tsx
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# Running
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/pavlo606/smart-can-frontend.git
+cd smart-can-frontend
+
+npm install
+npm run i18n:types
+npm run dev
 ```
+
+# Environment Variables
+
+One `.env` file with backend url.
+
+```bash
+VITE_API_URL="http://localhost:3000"
+```
+
+# Screenshots
+
+### Login form
+![Login form](docs/login.png)
+
+### Vehicle list
+![Vehicle list](docs/vehicle_list.png)
+
+### Track list
+![Track list](docs/track_list.png)
+
+### Interractive map
+![Interractive map](docs/map.png)
+
+# Backend
+
+Backend repository
+
+> https://github.com/pavlo606/smart-can-backend
+
+# Demo
+
+Live demo:
+
+> https://smart-can-frontend-production.up.railway.app/
+
+Swagger documentation for API:
+
+> https://smart-can-backend-production.up.railway.app/api/docs
+
+# License
+
+This project was developed as a Bachelor's degree project.
